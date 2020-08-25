@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/eyedeekay/gosam"
+	"github.com/eyedeekay/goSam"
 	"github.com/eyedeekay/sam3"
 	"golang.org/x/crypto/ssh"
 )
