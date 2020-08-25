@@ -40,7 +40,7 @@ func DialTor(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error
 		}
 		return ssh.NewClient(c, chans, reqs), nil
 	default:
-		return Dial("tor", addr, config)
+		return DialTor("tor", addr, config)
 	}
 }
 

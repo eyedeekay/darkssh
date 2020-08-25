@@ -24,7 +24,7 @@ const (
 // Dial returns an ssh.Client configured to connect via I2P. It accepts
 // "st" or "dg" in the "Network" parameter, for "streaming" or "datagram"
 // based connections. It is otherwise identical to ssh.Dial
-func Dial(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
+func DialI2P(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
 	switch network {
 	case "st":
 		conn, err := dialI2PStreaming(addr)
@@ -47,7 +47,7 @@ func Dial(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
 		}
 		return ssh.NewClient(c, chans, reqs), nil
 	default:
-		return Dial("st", addr, config)
+		return DialI2P("st", addr, config)
 	}
 }
 
