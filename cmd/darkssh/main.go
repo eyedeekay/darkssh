@@ -46,14 +46,19 @@ var (
 )
 
 func init() {
-
-	//	flag.StringVar(&addr, "ip", "127.0.0.1", "machine ip address.")
-	//	flag.StringVar(&user, "user", "root", "ssh user.")
 	flag.IntVar(&port, "p", 22, "ssh port number.")
 	flag.StringVar(&key, "i", strings.Join([]string{os.Getenv("HOME"), ".ssh", "id_rsa"}, "/"), "private key path.")
-	flag.BoolVar(&pass, "pass", false, "ask for ssh password instead of private key.")
-	flag.BoolVar(&agent, "agent", true, "use ssh agent for authentication (unix systems only).")
-	flag.BoolVar(&passphrase, "passphrase", false, "ask for private key passphrase.")
+	flag.BoolVar(&pass, "goph-pass", false, "ask for ssh password instead of private key.")
+	flag.BoolVar(&agent, "goph-agent", true, "use ssh agent for authentication (unix systems only).")
+	flag.BoolVar(&passphrase, "goph-passphrase", false, "ask for private key passphrase.")
+}
+
+func command(args []string) string {
+	c := ""
+	for _, arg := range args {
+		c += arg + " "
+	}
+	return strings.TrimRight(c, " ")
 }
 
 func main() {
@@ -66,7 +71,7 @@ func main() {
 	}
 
 	if len(args) >= 2 {
-		cmd = strings.Join(args, "")
+		cmd = strings.Join(args[1:], " ")
 	}
 
 	user = strings.SplitN(args[0], "@", 2)[0]

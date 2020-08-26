@@ -5,10 +5,8 @@ package goph
 
 import (
 	"errors"
-	"log"
 	"net"
 	"os"
-	"strings"
 
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/knownhosts"

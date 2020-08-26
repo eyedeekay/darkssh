@@ -4,8 +4,11 @@
 package goph
 
 import (
+	"fmt"
 	"golang.org/x/crypto/ssh"
+	"golang.org/x/crypto/ssh/terminal"
 	"io/ioutil"
+	"strings"
 )
 
 type Auth []ssh.AuthMethod
@@ -17,13 +20,42 @@ func Password(pass string) Auth {
 	}
 }
 
-// Get auth method from private key with or without passphrase.
-func Key(prvFile string, passphrase string) Auth {
+func askPass(msg string) string {
 
-	signer, err := GetSigner(prvFile, passphrase)
+	fmt.Print(msg)
+
+	pass, err := terminal.ReadPassword(0)
 
 	if err != nil {
 		panic(err)
+	}
+
+	fmt.Println("")
+
+	return strings.TrimSpace(string(pass))
+}
+
+func getPassphrase(ask bool) string {
+
+	if ask {
+		return askPass("Enter Private Key Passphrase: ")
+	}
+
+	return ""
+}
+
+// Get auth method from private key with or without passphrase.
+func Key(prvFile string, passphrase string) Auth {
+
+	var err error
+	signer, err := GetSigner(prvFile, passphrase)
+
+	if err != nil {
+		passphrase := getPassphrase(true)
+		signer, err = GetSigner(prvFile, passphrase)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	return Auth{
