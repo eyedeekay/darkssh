@@ -30,8 +30,53 @@ var (
 )
 
 func init() {
-	flag.IntVar(&port, "p", 22, "ssh port number.")
+	//-4 ipv4 only
+	//-6 ipv6 only
+	//-tor enforce Tor use
+	//-i2p i2p use
+	//-i2pdg i2p datagram use
+	//-A enable auth agent forwarding
+	//-a disable auth agent forwarding
+	//-B bind to the address of a specific interface, ignored on tor and i2p connections whre it is automatically overridden
+	//-b bind address for local machine, ignored on tor and i2p connections where it is automatically overridden
+	//-C
+	//-c
+	//-D
+	//-E
+	//-e
+	//-F
+	//-f
+	//-G
+	//-g
+	//-I
 	flag.StringVar(&key, "i", strings.Join([]string{os.Getenv("HOME"), ".ssh", "id_rsa"}, "/"), "private key path.")
+	//-J
+	//-K
+	//-k
+	//-L
+	//-l
+	//-M
+	//-m
+	//-N
+	//-n
+	//-O
+	//-o
+	flag.IntVar(&port, "p", 22, "ssh port number.")
+	//-Q
+	//-q
+	//-R
+	//-S
+	//-s
+	//-T
+	//-t
+	//-V
+	//-v
+	//-W
+	//-w
+	//-X
+	//-x
+	//-Y
+	//-y
 	flag.BoolVar(&pass, "goph-pass", false, "ask for ssh password instead of private key.")
 	flag.BoolVar(&agent, "goph-agent", true, "use ssh agent for authentication (unix systems only).")
 	flag.BoolVar(&passphrase, "goph-passphrase", false, "ask for private key passphrase.")
