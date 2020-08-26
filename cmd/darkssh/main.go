@@ -15,22 +15,6 @@ import (
 	"golang.org/x/crypto/ssh/terminal"
 )
 
-//
-// Run command and auth via password:
-// > go run main.go --ip 192.168.122.102 --pass --cmd ls
-//
-// Run command and auth via private key:
-// > go run main.go --ip 192.168.122.102 --cmd ls
-// Or:
-// > go run main.go --ip 192.168.122.102 --key /path/to/private_key --cmd ls
-//
-// Run command and auth with private key and passphrase:
-// > go run main.go --ip 192.168.122.102 --passphrase --cmd ls
-//
-//
-// You can test with the interactive mode without passing --cmd falg.
-//
-
 var (
 	err        error
 	auth       goph.Auth
