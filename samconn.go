@@ -9,19 +9,25 @@ import (
 	"golang.org/x/crypto/ssh"
 )
 
+// SAMHost is the SAM API bridge host
 var SAMHost = "127.0.0.1"
+
+// SAMPort is the SAM API bridge port
 var SAMPort = "7656"
 
+// SAMAddress combines SAMHost and SAMPort
 func SAMAddress() string {
 	return SAMHost + ":" + SAMPort
 }
 
 const (
+	// STREAMING is an I2P Streaming Session
 	STREAMING string = "st"
+	// DATAGRAMS is an I2P Datagram Session
 	DATAGRAMS string = "dg"
 )
 
-// Dial returns an ssh.Client configured to connect via I2P. It accepts
+// DialI2P returns an ssh.Client configured to connect via I2P. It accepts
 // "st" or "dg" in the "Network" parameter, for "streaming" or "datagram"
 // based connections. It is otherwise identical to ssh.Dial
 func DialI2P(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
@@ -56,6 +62,14 @@ func dialI2PStreaming(addr string) (net.Conn, error) {
 		goSam.SetHost(SAMHost),
 		goSam.SetPort(SAMPort),
 		goSam.SetDebug(false),
+		goSam.SetInLength(2),
+		goSam.SetOutLength(2),
+		goSam.SetInQuantity(3),
+		goSam.SetOutQuantity(3),
+		goSam.SetInBackups(2),
+		goSam.SetOutBackups(2),
+		goSam.SetCloseIdle(false),
+		goSam.SetReduceIdle(false),
 	)
 	if err != nil {
 		return nil, err

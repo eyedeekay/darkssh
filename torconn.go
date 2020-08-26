@@ -8,23 +8,31 @@ import (
 	"golang.org/x/crypto/ssh"
 )
 
+// TORHost is the host where Tor is running
 var TORHost = "127.0.0.1"
+
+// SOCKSPort is the port used for the Tor SOCKS proxy
 var SOCKSPort = "9050"
+
+// CONTROLPort is the port used for controlling Tor
 var CONTROLPort = "9051"
 
+// SOCKSAddress gives you the address of the Tor SOCKS port
 func SOCKSAddress() string {
 	return TORHost + ":" + SOCKSPort
 }
 
+// CONTROLAddress gets you the address of the Tor Control Port
 func CONTROLAddress() string {
 	return TORHost + ":" + SOCKSPort
 }
 
 const (
+	// TORTCP a TOR TCP session
 	TORTCP string = "tor"
 )
 
-// Dial returns an ssh.Client configured to connect via I2P. It accepts
+// DialTor returns an ssh.Client configured to connect via Tor. It accepts
 // "st" or "dg" in the "Network" parameter, for "streaming" or "datagram"
 // based connections. It is otherwise identical to ssh.Dial
 func DialTor(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
