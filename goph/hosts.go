@@ -45,14 +45,10 @@ func CheckKnownHost(host string, remote net.Addr, key ssh.PublicKey, knownFile s
 	}
 	//	hostErr
 	// Get host key callback
-	if strings.Contains(remote.String(), ".i2p") {
-		log.Println("I2P host detected")
-	} else {
-		callback, hostErr = KnownHosts(knownFile)
-		// check if host already exists.
-		hostErr = callback(host, remote, key)
-	}
-	log.Println("LOG")
+	callback, hostErr = KnownHosts(knownFile)
+	// check if host already exists.
+	hostErr = callback(host, remote, key)
+
 	if hostErr != nil {
 		return false, hostErr
 	}

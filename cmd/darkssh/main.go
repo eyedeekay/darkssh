@@ -47,19 +47,30 @@ var (
 
 func init() {
 
-	flag.StringVar(&addr, "ip", "127.0.0.1", "machine ip address.")
-	flag.StringVar(&user, "user", "root", "ssh user.")
-	flag.IntVar(&port, "port", 22, "ssh port number.")
-	flag.StringVar(&key, "key", strings.Join([]string{os.Getenv("HOME"), ".ssh", "id_rsa"}, "/"), "private key path.")
-	flag.StringVar(&cmd, "cmd", "", "command to run.")
+	//	flag.StringVar(&addr, "ip", "127.0.0.1", "machine ip address.")
+	//	flag.StringVar(&user, "user", "root", "ssh user.")
+	flag.IntVar(&port, "p", 22, "ssh port number.")
+	flag.StringVar(&key, "i", strings.Join([]string{os.Getenv("HOME"), ".ssh", "id_rsa"}, "/"), "private key path.")
 	flag.BoolVar(&pass, "pass", false, "ask for ssh password instead of private key.")
-	flag.BoolVar(&agent, "agent", false, "use ssh agent for authentication (unix systems only).")
+	flag.BoolVar(&agent, "agent", true, "use ssh agent for authentication (unix systems only).")
 	flag.BoolVar(&passphrase, "passphrase", false, "ask for private key passphrase.")
 }
 
 func main() {
 
 	flag.Parse()
+
+	args := flag.Args()
+	if len(args) < 1 {
+		log.Fatal("What SSH server do you want to connect to? user@addr")
+	}
+
+	if len(args) >= 2 {
+		cmd = strings.Join(args, "")
+	}
+
+	user = strings.SplitN(args[0], "@", 2)[0]
+	addr = strings.SplitN(args[0], "@", 2)[1]
 
 	if agent {
 
@@ -91,20 +102,19 @@ func main() {
 		if hostFound && err != nil {
 			return err
 		}
-		log.Println("LOG")
+
 		// handshake because public key already exists.
 		if hostFound && err == nil {
-
 			return nil
 		}
-		log.Println("LOG")
+
 		// Ask user to check if he trust the host public key.
 		if askIsHostTrusted(host, key) == false {
-			log.Println("LOG")
+
 			// Make sure to return error on non trusted keys.
 			return errors.New("you typed no, aborted!")
 		}
-		log.Println("LOG")
+
 		// Add the new host to known hosts file.
 		return goph.AddKnownHost(host, remote, key, "")
 	})
