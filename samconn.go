@@ -89,5 +89,5 @@ func dialI2PDatagrams(addr string) (net.Conn, error) {
 		return nil, err
 	}
 	log.Println("\tBuilding tunnel")
-	return sam.NewDatagramSession("streamTun", keys, []string{"inbound.length=2", "outbound.length=2", "inbound.lengthVariance=0", "outbound.lengthVariance=0", "inbound.quantity=3", "outbound.quantity=3"}, 0)
+	return sam.NewDatagramSession("streamTun", keys, []string{"inbound.length=2", "outbound.length=2", "inbound.lengthVariance=0", "outbound.lengthVariance=0", "inbound.quantity=3", "outbound.quantity=3", "inbound.backupQuantity=2", "outbound.backupQuantity=2", "i2cp.closeOnIdle=false", "i2cp.reduceOnIdle=false"}, 0)
 }
