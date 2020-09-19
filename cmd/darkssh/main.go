@@ -2,13 +2,18 @@ package main
 
 import (
 	"bufio"
+	"context"
 	"errors"
 	"flag"
 	"fmt"
 	"log"
 	"net"
 	"os"
+	//"path"
+	"os/signal"
 	"strings"
+	"sync"
+	"syscall"
 
 	"github.com/eyedeekay/darkssh/goph"
 	"golang.org/x/crypto/ssh"
@@ -16,17 +21,19 @@ import (
 )
 
 var (
-	err        error
-	auth       goph.Auth
-	client     *goph.Client
-	addr       string
-	user       string
-	port       int
-	key        string
-	cmd        string
-	pass       bool
-	passphrase bool
-	agent      bool
+	err           error
+	auth          goph.Auth
+	client        *goph.Client
+	addr          string
+	user          string
+	port          int
+	key           string
+	cmd           string
+	pass          bool
+	passphrase    bool
+	agent         bool
+	localforward  string
+	remoteforward string
 )
 
 func init() {
@@ -54,6 +61,7 @@ func init() {
 	//-K
 	//-k
 	//-L
+	flag.StringVar(&localforward, "L", "", "Forward a remote service to a local address")
 	//-l
 	//-M
 	//-m
@@ -64,6 +72,7 @@ func init() {
 	flag.IntVar(&port, "p", 22, "ssh port number.")
 	//-Q
 	//-q
+	flag.StringVar(&remoteforward, "R", "", "Forward a local service to a remote address")
 	//-R
 	//-S
 	//-s
@@ -94,6 +103,14 @@ func main() {
 
 	flag.Parse()
 
+	ctx, cancel := context.WithCancel(context.Background())
+	go func() {
+		sigc := make(chan os.Signal, 1)
+		signal.Notify(sigc, syscall.SIGINT, syscall.SIGTERM)
+		log.Printf("received %v - initiating shutdown", <-sigc)
+		cancel()
+	}()
+
 	args := flag.Args()
 	if len(args) < 1 {
 		log.Fatal("What SSH server do you want to connect to? user@addr")
@@ -107,15 +124,10 @@ func main() {
 	addr = strings.SplitN(args[0], "@", 2)[1]
 
 	if agent {
-
 		auth = goph.UseAgent()
-
 	} else if pass {
-
 		auth = goph.Password(askPass("Enter SSH Password: "))
-
 	} else {
-
 		auth = goph.Key(key, getPassphrase(passphrase))
 	}
 
@@ -160,6 +172,22 @@ func main() {
 	// Close client net connection
 	defer client.Close()
 
+	if localforward != "" {
+		client.Mode = '>'
+		var wg sync.WaitGroup
+		//    logger.Printf("%s starting", path.Base(os.Args[0]))
+		wg.Add(1)
+		go client.BindTunnel(ctx, &wg)
+		wg.Wait()
+	}
+	if remoteforward != "" {
+		client.Mode = '<'
+		var wg sync.WaitGroup
+		//    logger.Printf("%s starting", path.Base(os.Args[0]))
+		wg.Add(1)
+		go client.BindTunnel(ctx, &wg)
+		wg.Wait()
+	}
 	// If the cmd flag exists
 	if cmd != "" {
 
@@ -170,7 +198,9 @@ func main() {
 	}
 
 	// else open interactive mode.
-	playWithSSHJustForTestingThisProgram(client)
+	if err = client.Interact(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func askPass(msg string) string {
@@ -212,75 +242,4 @@ func askIsHostTrusted(host string, key ssh.PublicKey) bool {
 	}
 
 	return strings.ToLower(strings.TrimSpace(a)) == "yes"
-}
-
-func playWithSSHJustForTestingThisProgram(client *goph.Client) {
-
-	fmt.Println("Welcome To Goph :D")
-	fmt.Printf("Connected to %s\n", client.Addr)
-	fmt.Println("Type your shell command and enter.")
-	fmt.Println("To download file from remote type: download remote/path local/path")
-	fmt.Println("To upload file to remote type: upload local/path remote/path")
-	fmt.Println("To exit type: exit")
-
-	scanner := bufio.NewScanner(os.Stdin)
-
-	fmt.Print("> ")
-
-	var (
-		out   []byte
-		err   error
-		cmd   string
-		parts []string
-	)
-
-loop:
-	for scanner.Scan() {
-
-		err = nil
-		cmd = scanner.Text()
-		parts = strings.Split(cmd, " ")
-
-		if len(parts) < 1 {
-			continue
-		}
-
-		switch parts[0] {
-
-		case "exit":
-			fmt.Println("goph bye!")
-			break loop
-
-		case "download":
-
-			if len(parts) != 3 {
-				fmt.Println("please type valid download command!")
-				continue loop
-			}
-
-			err = client.Download(parts[1], parts[2])
-
-			fmt.Println("download err: ", err)
-			break
-
-		case "upload":
-
-			if len(parts) != 3 {
-				fmt.Println("please type valid upload command!")
-				continue loop
-			}
-
-			err = client.Upload(parts[1], parts[2])
-
-			fmt.Println("upload err: ", err)
-			break
-
-		default:
-
-			out, err = client.Run(cmd)
-			fmt.Println(string(out), err)
-		}
-
-		fmt.Print("> ")
-	}
 }

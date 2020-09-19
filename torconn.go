@@ -17,13 +17,13 @@ var SOCKSPort = "9050"
 // CONTROLPort is the port used for controlling Tor
 var CONTROLPort = "9051"
 
-// SOCKSAddress gives you the address of the Tor SOCKS port
-func SOCKSAddress() string {
+// SOCKSHostAddress gives you the address of the Tor SOCKS port
+func SOCKSHostAddress() string {
 	return TORHost + ":" + SOCKSPort
 }
 
-// CONTROLAddress gets you the address of the Tor Control Port
-func CONTROLAddress() string {
+// CONTROLHostAddress gets you the address of the Tor Control Port
+func CONTROLHostAddress() string {
 	return TORHost + ":" + SOCKSPort
 }
 
@@ -58,7 +58,7 @@ func dialTorStreaming(addr string) (net.Conn, error) {
 	if err != nil {
 		return nil, err
 	}
-	d, err := t.Dialer(nil, &tor.DialConf{ProxyAddress: SOCKSAddress()})
+	d, err := t.Dialer(nil, &tor.DialConf{ProxyAddress: SOCKSHostAddress()})
 	if err != nil {
 		return nil, err
 	}

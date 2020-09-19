@@ -1,0 +1,55 @@
+2020/09/03 23:06:23 > "HELLO VERSION MIN=3.0 MAX=3.2\n"
+2020/09/03 23:06:23 < "HELLO REPLY RESULT=OK VERSION=3.2\n"
+PARSER PARTS [HELLO REPLY RESULT=OK VERSION=3.2]
+2020/09/03 23:06:23 	Building tunnel
+2020/09/03 23:06:23 > "SESSION CREATE STYLE=STREAM ID=1579325604 DESTINATION=TRANSIENT    SIGNATURE_TYPE=EdDSA_SHA512_Ed25519   inbound.length=2  outbound.length=2  inbound.lengthVariance=0  outbound.lengthVariance=0  inbound.quantity=3  outbound.quantity=3  inbound.backupQuantity=3  outbound.backupQuantity=3  i2cp.dontPublishLeaseSet=false  i2cp.encryptLeaseSet=false  i2cp.leaseSetEncType=4,0  i2cp.reduceOnIdle=false  i2cp.reduceIdleTime=300000  i2cp.reduceIdleQuantity=1  i2cp.closeOnIdle=false  i2cp.closeIdleTime=600000  i2cp.gzip=false  \n"
+2020/09/03 23:06:24 < "SESSION STATUS RESULT=OK DESTINATION=IlW8bSnKznHm~~tnFvXr0nNpSxvbyW49NaWRVeLhJyd0oHd9~lZLaymji0569xaRxUOpVZWX603fkWZ0DtKh4XNgFve5fWYlQbFWyduUfZsnftk23SKqoQHrpzd2G335wzizZh8gzAwU2MbX2H7JGhPJ4ZtoaGiCNDElA03GRMqgZfd-4rETbgE4HZPsc~~is4IXRQmgfUmEBUWl730wtteh-KRdXtQDedmT6xUud1fSV66wloSENLcBpFfOVYSGqciJH-vwr4goCrPluX3CMVRTB0zWWbUi73iY3z0WItxFT1RaN-2q6C-lO~Z9rYoGGkAyjzyEnFOyIsWk9~NvZwzvh4yA7~gRrgBA5xyUVb92PeKvs6z~2cwEx4jjgnhDZOWCfqRmfWic1cr26N-XuggXGNR6JF0cSfRM8yg1VHxQkQVufBTJ5DZTNJjWLU-FJ7vBRgXB1Hxgn57lyHry0MPrVdTHfudq~Rf3mI0vW3txPCrkylBTu7h-2pLSt~QVBQAEAAcAAIoYa0P4CyCzEcoyD6~52~K~Jdhl8Y3lPVbB8-MXwGF5wsuffy2XDI9Ha6OaTtb09k158~pIYTSvgVPOBOhZAs0nD8zoqz3qy6qRlevkCCxxunEO8sIKjH75wDCHT8-OxttyEKzwfNJPzqTlT44cbj~BktgkTt1zWiD7QgyaYq~dzG9bycnwQwvP79jZJY6kfb63bUwE7lJDkwHlRfjW2rKY~MD1OWALecrG-PeuLTkDq8N4a2ybq5~VLVQQABmCqUz5dEEUSB5eLGJm9fyCXr3PUqWhnAnEu5Ya6H9hOrH5k3fm6cJ21CEazyFtlt0J535NsVRv1B-kHHcNrXTnS6Sncuqd4XOo5qxbfs55ZkRZAFBc2awNNlqgdUFV0y1C4g==\n"
+PARSER PARTS [SESSION STATUS RESULT=OK DESTINATION=IlW8bSnKznHm~~tnFvXr0nNpSxvbyW49NaWRVeLhJyd0oHd9~lZLaymji0569xaRxUOpVZWX603fkWZ0DtKh4XNgFve5fWYlQbFWyduUfZsnftk23SKqoQHrpzd2G335wzizZh8gzAwU2MbX2H7JGhPJ4ZtoaGiCNDElA03GRMqgZfd-4rETbgE4HZPsc~~is4IXRQmgfUmEBUWl730wtteh-KRdXtQDedmT6xUud1fSV66wloSENLcBpFfOVYSGqciJH-vwr4goCrPluX3CMVRTB0zWWbUi73iY3z0WItxFT1RaN-2q6C-lO~Z9rYoGGkAyjzyEnFOyIsWk9~NvZwzvh4yA7~gRrgBA5xyUVb92PeKvs6z~2cwEx4jjgnhDZOWCfqRmfWic1cr26N-XuggXGNR6JF0cSfRM8yg1VHxQkQVufBTJ5DZTNJjWLU-FJ7vBRgXB1Hxgn57lyHry0MPrVdTHfudq~Rf3mI0vW3txPCrkylBTu7h-2pLSt~QVBQAEAAcAAIoYa0P4CyCzEcoyD6~52~K~Jdhl8Y3lPVbB8-MXwGF5wsuffy2XDI9Ha6OaTtb09k158~pIYTSvgVPOBOhZAs0nD8zoqz3qy6qRlevkCCxxunEO8sIKjH75wDCHT8-OxttyEKzwfNJPzqTlT44cbj~BktgkTt1zWiD7QgyaYq~dzG9bycnwQwvP79jZJY6kfb63bUwE7lJDkwHlRfjW2rKY~MD1OWALecrG-PeuLTkDq8N4a2ybq5~VLVQQABmCqUz5dEEUSB5eLGJm9fyCXr3PUqWhnAnEu5Ya6H9hOrH5k3fm6cJ21CEazyFtlt0J535NsVRv1B-kHHcNrXTnS6Sncuqd4XOo5qxbfs55ZkRZAFBc2awNNlqgdUFV0y1C4g==]
+Listening on destination: pirydv6b7xasonninu7yhog3fzeshctsatv5jzzyqda4pk2bfyiq.b32.i2p
+2020/09/03 23:06:24 > "HELLO VERSION MIN=3.0 MAX=3.2\n"
+2020/09/03 23:06:24 < "HELLO REPLY RESULT=OK VERSION=3.2\n"
+PARSER PARTS [HELLO REPLY RESULT=OK VERSION=3.2]
+2020/09/03 23:06:24 starting ssh server on: pirydv6b7xasonninu7yhog3fzeshctsatv5jzzyqda4pk2bfyiq.b32.i2p
+2020/09/03 23:06:24 > "STREAM ACCEPT ID=1579325604 SILENT=false\n"
+2020/09/03 23:06:24 > "STREAM ACCEPT ID=1579325604 SILENT=false\n"
+2020/09/03 23:06:24 < "STREAM STATUS RESULT=OK\n"
+PARSER PARTS [STREAM STATUS RESULT=OK]
+Accept Resp: &{STREAM STATUS   map[RESULT:OK]}
+2020/09/03 23:06:24 > "STREAM ACCEPT ID=1579325604 SILENT=false\n"
+2020/09/03 23:06:24 > "STREAM ACCEPT ID=1579325604 SILENT=false\n"
+2020/09/03 23:06:24 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:24 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:24 > "SSH-2.0-Go\r\n"
+2020/09/03 23:06:24 > "SSH-2.0-Go\r\n"
+2020/09/03 23:06:24 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:24 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 < "hhkgq2ddcdm4lxsZvfxYeJQ3VuboWzTnQhovOhauFwSvOTyBFWB10sGMx21a6qRpBg~Ohdx3pApoyoKaf~SlDQ1tEV4~zDAVfG-0zC5kXhlVODjTLz0bVMYTFI46lKY2xQpSZ~alUfViIoIZraF-NTzm0rNIOND2qU0ETaBQh~BwPe~P4HkEf~2ChQeXN-gEjRY58dvuxmGKRx4zbsa4YL7y7Hh0oVJBg80TKuzPqQknx2a7TKkxCT3~gUEiPm6rBofoUD1Fwk8CeJufEjxc-FJVwaVkmItt2wUF9zbB6qRJ2NMyv7HHpmWEOd8hzUjWywn8412DmkD8TqiurAub4sbhCCpnlbzaCNVft65UTFzvoxFvgJiIAsHruWLD9RFxvjSasW2bAkHTyzw6JSelVYMRWmB2nqWMWEUup73YZlcgRoblKT-EvSUN6f5WQVGmMQIif0opH5WuPMyE7m7g1FM34jAVocaL~I-DaK4bV4Ca2~yZZfG9TVf5Cwhdj~uzBQAEAAcAAA== FROM_PORT=0 TO_PORT=0\n"
+PARSER PARTS [hhkgq2ddcdm4lxsZvfxYeJQ3VuboWzTnQhovOhauFwSvOTyBFWB10sGMx21a6qRpBg~Ohdx3pApoyoKaf~SlDQ1tEV4~zDAVfG-0zC5kXhlVODjTLz0bVMYTFI46lKY2xQpSZ~alUfViIoIZraF-NTzm0rNIOND2qU0ETaBQh~BwPe~P4HkEf~2ChQeXN-gEjRY58dvuxmGKRx4zbsa4YL7y7Hh0oVJBg80TKuzPqQknx2a7TKkxCT3~gUEiPm6rBofoUD1Fwk8CeJufEjxc-FJVwaVkmItt2wUF9zbB6qRJ2NMyv7HHpmWEOd8hzUjWywn8412DmkD8TqiurAub4sbhCCpnlbzaCNVft65UTFzvoxFvgJiIAsHruWLD9RFxvjSasW2bAkHTyzw6JSelVYMRWmB2nqWMWEUup73YZlcgRoblKT-EvSUN6f5WQVGmMQIif0opH5WuPMyE7m7g1FM34jAVocaL~I-DaK4bV4Ca2~yZZfG9TVf5Cwhdj~uzBQAEAAcAAA== FROM_PORT=0 TO_PORT=0]
+Accept Resp: &{hhkgq2ddcdm4lxsZvfxYeJQ3VuboWzTnQhovOhauFwSvOTyBFWB10sGMx21a6qRpBg~Ohdx3pApoyoKaf~SlDQ1tEV4~zDAVfG-0zC5kXhlVODjTLz0bVMYTFI46lKY2xQpSZ~alUfViIoIZraF-NTzm0rNIOND2qU0ETaBQh~BwPe~P4HkEf~2ChQeXN-gEjRY58dvuxmGKRx4zbsa4YL7y7Hh0oVJBg80TKuzPqQknx2a7TKkxCT3~gUEiPm6rBofoUD1Fwk8CeJufEjxc-FJVwaVkmItt2wUF9zbB6qRJ2NMyv7HHpmWEOd8hzUjWywn8412DmkD8TqiurAub4sbhCCpnlbzaCNVft65UTFzvoxFvgJiIAsHruWLD9RFxvjSasW2bAkHTyzw6JSelVYMRWmB2nqWMWEUup73YZlcgRoblKT-EvSUN6f5WQVGmMQIif0opH5WuPMyE7m7g1FM34jAVocaL~I-DaK4bV4Ca2~yZZfG9TVf5Cwhdj~uzBQAEAAcAAA== FROM_PORT=0  TO_PORT=0 map[]}
+2020/09/03 23:06:46 > "STREAM ACCEPT ID=1579325604 SILENT=false\n"
+2020/09/03 23:06:46 > "STREAM ACCEPT ID=1579325604 SILENT=false\n"
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 > "SSH-2.0-Go\r\n"
+2020/09/03 23:06:46 > "SSH-2.0-Go\r\n"
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 < "S"
+2020/09/03 23:06:46 < "S"
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 < "S"
+2020/09/03 23:06:46 < "S"
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 < "H"
+2020/09/03 23:06:46 < "H"
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 < "-"
+2020/09/03 23:06:46 < "-"
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 WARNING: SetDeadline() not sure this works
+2020/09/03 23:06:46 < "2.0-Go\r\n\x00\x00\x03\x1c\t\x14\xbb\x92\x13\xd8')\xfa\x89\n\x00u9ѿfM\x00\x00\x00qcurve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1\x00\x00\x01-ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-rsa,ssh-dss,ssh-ed25519\x00\x00\x00Uaes128-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr\x00\x00\x00Uaes128-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr\x00\x00\x00Bhmac-sha2-256-etm@openssh.com,hmac-sha2-256,hmac-sha1,hmac-sha1-96\x00\x00\x00Bhmac-sha2-256-etm@openssh.com,hmac-sha2-256,hmac-sha1,hmac-sha1-96\x00\x00\x00\x04none\x00\x00\x00\x04none\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc9:\x8a\xd6#\xba\xaec\x8b"
+2020/09/03 23:06:46 Malformed Reply.
+2.0-Go

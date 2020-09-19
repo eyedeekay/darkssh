@@ -4,24 +4,26 @@
 package goph
 
 import (
+	"github.com/eyedeekay/sshtunnel/tunnel"
 	"golang.org/x/crypto/ssh"
 	"time"
 )
 
-type Client struct {
+type Interactive struct {
 	Port  int
-	Auth  Auth
-	Addr  string
-	User  string
 	Conn  *ssh.Client
 	Proto string
 }
 
+type Client struct {
+	*sshtunnel.Tunnel
+	*Interactive
+	Auth
+}
+
 // Connect to ssh and get client, the host public key must be in known hosts.
 func New(user string, addr string, auth Auth) (c *Client, err error) {
-
 	callback, err := DefaultKnownHosts()
-
 	if err != nil {
 		return
 	}
@@ -43,14 +45,19 @@ func NewUnknown(user string, addr string, auth Auth) (*Client, error) {
 func NewConn(user string, addr string, auth Auth, callback ssh.HostKeyCallback) (c *Client, err error) {
 
 	c = &Client{
-		User: user,
-		Addr: addr,
-		Auth: auth,
+		Interactive: &Interactive{
+			Port: 22,
+		},
+		Tunnel: &sshtunnel.Tunnel{
+			HostAddr: addr,
+			User:     user,
+			HostKeys: callback,
+		},
 	}
 
 	err = Conn(c, &ssh.ClientConfig{
 		User:            c.User,
-		Auth:            c.Auth,
+		Auth:            auth,
 		Timeout:         600 * time.Second,
 		HostKeyCallback: callback,
 	})
