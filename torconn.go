@@ -38,7 +38,7 @@ const (
 func DialTor(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
 	switch network {
 	case "tor":
-		conn, err := dialTorStreaming(addr)
+		conn, err := DialTorStreaming(network, addr)
 		if err != nil {
 			return nil, err
 		}
@@ -52,7 +52,7 @@ func DialTor(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error
 	}
 }
 
-func dialTorStreaming(addr string) (net.Conn, error) {
+func DialTorStreaming(network, addr string) (net.Conn, error) {
 	log.Println("\tBuilding connection")
 	t, err := tor.Start(nil, nil)
 	if err != nil {

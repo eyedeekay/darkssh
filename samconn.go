@@ -35,7 +35,7 @@ const (
 func DialI2P(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error) {
 	switch network {
 	case "st":
-		conn, err := DialI2PStreaming(addr)
+		conn, err := DialI2PStreaming(network, addr)
 		if err != nil {
 			return nil, err
 		}
@@ -45,7 +45,7 @@ func DialI2P(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error
 		}
 		return ssh.NewClient(c, chans, reqs), nil
 	case "dg":
-		conn, err := DialI2PDatagrams(addr)
+		conn, err := DialI2PDatagrams(network, addr)
 		if err != nil {
 			return nil, err
 		}
@@ -59,7 +59,15 @@ func DialI2P(network, addr string, config *ssh.ClientConfig) (*ssh.Client, error
 	}
 }
 
-func DialI2PStreaming(addr string) (net.Conn, error) {
+func DialI2PConn(net, addr string) (net.Conn, error) {
+	if net == "dg" {
+		return DialI2PDatagrams(net, addr)
+	} else {
+		return DialI2PStreaming(net, addr)
+	}
+}
+
+func DialI2PStreaming(net, addr string) (net.Conn, error) {
 	sam, err := goSam.NewClientFromOptions(
 		goSam.SetHost(SAMHost),
 		goSam.SetPort(SAMPort),
@@ -80,7 +88,7 @@ func DialI2PStreaming(addr string) (net.Conn, error) {
 	return sam.Dial("tcp", addr)
 }
 
-func DialI2PDatagrams(addr string) (net.Conn, error) {
+func DialI2PDatagrams(net, addr string) (net.Conn, error) {
 	sam, err := sam3.NewSAM(SAMHostAddress())
 	if err != nil {
 		return nil, err

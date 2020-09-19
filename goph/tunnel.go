@@ -13,6 +13,7 @@ import (
 	//"sync/atomic"
 	"time"
 
+	"github.com/eyedeekay/darkssh"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -108,7 +109,7 @@ func (t Client) DialTunnel(ctx context.Context, wg *sync.WaitGroup, client *ssh.
 	case '>':
 		cn2, err = client.Dial("tcp", t.DialAddr)
 	case '<':
-		cn2, err = net.Dial("tcp", t.DialAddr)
+		cn2, err = darkssh.DialI2PStreaming("tcp", t.DialAddr)
 	}
 	if err != nil {
 		fmt.Printf("(%v) dial error: %v", t, err)
