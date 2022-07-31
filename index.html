@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>
+      DarkSSH - SSH-ov...
+    </title>
+    <meta name="author" content="eyedeekay" />
+    <meta name="description" content="darkssh" />
+    <meta name="keywords" content="master" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="#shownav">
+        Show navigation
+      </a>
+      <div id="shownav">
+        <div id="hidenav">
+          <ul>
+            <li>
+              <a href="index.html">
+                index
+              </a>
+            </li>
+          </ul>
+          <br>
+          <a href="#hidenav">
+            Hide Navigation
+          </a>
+        </div>
+      </div>
+    </div>
+    <h1>
+      DarkSSH - SSH-over-Anonymous-Networks for Go
+    </h1>
+    <p>
+      This is a tool for automatically connecting to SSH Servers and SSH-based
+      Services which are hosted on
+      <code>
+        .i2p
+      </code>
+      and
+      <code>
+        .onion
+      </code>
+      resources. Given an .i2p
+      or .onion host, it will dial out using their respective sockets. It is
+      used to make managing many
+      <code>
+        .i2p
+      </code>
+      or
+      <code>
+        .onion
+      </code>
+      -hosted SSH services easier
+      by natively handling the
+      <code>
+        known_hosts
+      </code>
+      file and automatically handling
+      proxy setup and client key-management for services which use blocklisting
+      and allowlisting facilities provided by the hidden services, or even more
+      sophisticated features like Encrypted LeaseSets. As a fringe benefit,
+      when addressing services by their cryptographic identifiers(i.e. the
+      <code>
+        .b32.i2p
+      </code>
+      or
+      <code>
+        .onion
+      </code>
+      domains) there is no chance of impersonation.
+      Eventually, it will implement a drop-in replacement for a real SSH client
+      so it can be used as a ProxyCommand or as part of a
+      <code>
+        .i2p
+      </code>
+      or
+      <code>
+        .onion
+      </code>
+      only
+      selfhosted workflow.
+    </p>
+    <p>
+      What’s in this repository:
+    </p>
+    <pre><code># a terminal SSH client - interface is *UNSTABLE*, forked from goph
+# for modification
+./cmd/darkssh
+# a slightly-modified version of melbahja/goph, which automatically
+# configures itself for I2P and Tor Transports
+./goph
+# implementations of the required interfaces for x/crypto/ssh
+./
+</code></pre>
+    <p>
+      The goal is to be exactly compatible with any other SSH client, so things
+      that proxy commands to SSH, like rsync or SSHFS, can use it instead when
+      someone wants to use such a tool over Tor or I2P.
+    </p>
+    <p>
+      Eventually, an SSH server will also be implemented.
+    </p>
+    <div>
+      <a href="#show">
+        Show license
+      </a>
+      <div id="show">
+        <div id="hide">
+          <pre><code>MIT License
+
+Copyright (c) 2020 idk
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+          <a href="#hide">
+            Hide license
+          </a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <iframe src="https://snowflake.torproject.org/embed.html" width="320" height="240" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </body>
+</html>
